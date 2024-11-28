@@ -1,0 +1,214 @@
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Deteksi Penyakit Tanaman Melon</title>
+  <script src="https://cdn.tailwindcss.com"></script>
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css"></link>
+  <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@400;700&display=swap" rel="stylesheet">
+  <style>
+    body {
+      font-family: 'Roboto', sans-serif;
+      background-image: url('https://i.pinimg.com/736x/86/2a/34/862a346865dee0f30f822644917c0527.jpg');
+      background-size: cover;
+      background-position: center;
+    }
+  </style>
+</head>
+<body class="bg-gray-100 bg-opacity-75 flex flex-col items-center justify-center min-h-screen">
+  <header class="bg-green-600 text-white w-full py-4 text-center bg-opacity-90 relative">
+    <div class="absolute top-0 left-0 mt-4 ml-4">
+      <i class="fas fa-bars text-white text-2xl"></i>
+    </div>
+    <h1 class="text-3xl font-bold">Deteksi Penyakit Tanaman Melon</h1>
+    <p class="text-lg">Mengidentifikasi Penyakit Tanaman</p>
+    <nav class="absolute top-0 right-0 mt-4 mr-4">
+      <ul class="flex space-x-4">
+        <li><a href="index (2).html" class="text-white hover:text-gray-300">Home</a></li>
+        <li><a href="about.html" class="text-white hover:text-gray-300">About</a></li>
+        <li><a href="tel:081362480496" class="text-white hover:text-gray-300">Contact</a></li>
+      </ul>
+    </nav>
+  </header>
+  
+  <main class="w-11/12 max-w-lg mt-8 bg-white p-6 rounded-lg shadow-md bg-opacity-90">
+    <div class="mb-4">
+      <label for="plant-type" class="block text-lg font-semibold mb-2">Pilih Jenis Tanaman</label>
+      <select id="plant-type" class="w-full p-2 border border-gray-300 rounded">
+        <option value="melon">Melon</option>
+      </select>
+    </div>
+    
+    <div class="mb-4">
+      <label for="symptom" class="block text-lg font-semibold mb-2">Masukkan Gejala</label>
+      <input type="text" id="symptom" class="w-full p-2 border border-gray-300 rounded" placeholder="Misal: daun layu, bercak putih, dll">
+    </div>
+    
+    <button onclick="detectDisease()" class="w-full py-2 bg-green-600 text-white font-semibold rounded hover:bg-green-700">Deteksi Penyakit</button>
+    
+    <div id="result" class="mt-4 p-4 bg-green-100 border border-green-600 rounded hidden">
+      <h2 class="text-xl font-bold mb-2">Hasil Deteksi:</h2>
+      <p id="disease-result" class="text-lg"></p>
+      <img id="disease-image" class="mt-4 w-full h-64 object-cover rounded" src="" alt="">
+      <h3 class="text-lg font-semibold mt-4">Penyebab:</h3>
+      <p id="disease-cause" class="text-lg"></p>
+      <h3 class="text-lg font-semibold mt-4">Solusi:</h3>
+      <p id="disease-solution" class="text-lg"></p>
+    </div>
+  </main>
+
+  <footer class="w-full py-4 text-center bg-green-600 text-white bg-opacity-90 mt-8">
+    <p>© 2023 Deteksi Penyakit Tanaman Melon. All rights reserved.</p>
+  </footer>
+
+  <script>
+    function detectDisease() {
+      const plantType = document.getElementById("plant-type").value;
+      const symptom = document.getElementById("symptom").value.toLowerCase();
+      
+      let resultText = "";
+      let imageUrl = "";
+      let imageAlt = "";
+      let causeText = "";
+      let solutionText = "";
+
+      if (plantType === "melon") {
+        if (symptom.includes("bercak putih")) {
+          resultText = "Penyakit yang mungkin: Embun Tepung.";
+          imageUrl = "https://www.kampustani.com/wp-content/uploads/2022/04/penyakit-embun-tepung-pada-melon.jpg";
+          imageAlt = "Melon plant with white powdery mildew spots on leaves";
+          causeText = "Penyebab: Jamur Erysiphe cichoracearum.";
+          solutionText = "Solusi: Gunakan fungisida yang sesuai dan pastikan sirkulasi udara yang baik.";
+        } else if (symptom.includes("layu")) {
+          resultText = "Penyakit yang mungkin: Layu Fusarium.";
+          imageUrl = "https://agrokomplekskita.com/wp-content/uploads/2019/05/Ciri-Fisik-Tanaman-yang-terserang-layu-fusarium-511x245.jpg";
+          imageAlt = "Melon plant with wilted leaves due to Fusarium wilt";
+          causeText = "Penyebab: Jamur Fusarium oxysporum.";
+          solutionText = "Solusi: Rotasi tanaman dan gunakan varietas yang tahan penyakit.";
+        } else if (symptom.includes("bercak coklat")) {
+          resultText = "Penyakit yang mungkin: Antraknosa.";
+          imageUrl = "https://bdsgp.my.id/img/300/brff50htbrfsa3s610_1/hA0P8esImo8HhcihA0qlkJQEN058CT06VtWjlKMizNA.jpg";
+          imageAlt = "Melon plant with brown spots due to Anthracnose";
+          causeText = "Penyebab: Jamur Colletotrichum lagenarium.";
+          solutionText = "Solusi: Gunakan fungisida dan hindari kelembaban berlebih.";
+        } else if (symptom.includes("busuk akar")) {
+          resultText = "Penyakit yang mungkin: Busuk Akar.";
+          imageUrl = "https://bdsgp.my.id/img/600/brff50htbrfsa3s610_1/hALVa3GEj4oPLT9hAsm89Y2vWT3m26ReixyzAfrpTQ.jpg";
+          imageAlt = "Melon plant with root rot";
+          causeText = "Penyebab: Jamur Phytophthora spp.";
+          solutionText = "Solusi: Pastikan drainase yang baik dan gunakan fungisida.";
+        } else if (symptom.includes("bercak kuning")) {
+          resultText = "Penyakit yang mungkin: Virus Mosaik.";
+          imageUrl = "https://www.shutterstock.com/shutterstock/photos/1630449166/display_1500/stock-photo-cucumber-mosaic-virus-cmv-is-an-important-virus-because-of-its-agricultural-impact-in-the-1630449166.jpg";
+          imageAlt = "Melon plant with yellow spots due to Mosaic Virus";
+          causeText = "Penyebab: Virus Mosaik.";
+          solutionText = "Solusi: Gunakan varietas tahan virus dan kendalikan vektor.";
+        } else if (symptom.includes("bercak hitam")) {
+          resultText = "Penyakit yang mungkin: Alternaria.";
+          imageUrl = "https://bugwoodcloud.org/images/1536x1024/1576455.jpg";
+          imageAlt = "Melon plant with black spots due to Alternaria";
+          causeText = "Penyebab: Jamur Alternaria spp.";
+          solutionText = "Solusi: Gunakan fungisida dan hindari kelembaban berlebih.";
+        } else if (symptom.includes("bercak merah")) {
+          resultText = "Penyakit yang mungkin: Karat.";
+          imageUrl = "https://bdsgp.my.id/img/300/brff50htbrfsa3s610_1/hA0P8esImo8HhcihA0qlkJQEN058CT06VtWjlKMizNA.jpg";
+          imageAlt = "Melon plant with red spots due to Rust";
+          causeText = "Penyebab: Jamur Puccinia spp.";
+          solutionText = "Solusi: Gunakan fungisida dan pastikan sirkulasi udara yang baik.";
+        } else if (symptom.includes("bercak ungu")) {
+          resultText = "Penyakit yang mungkin: Cercospora.";
+          imageUrl = "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcR8npIcfAxwIEzpd7_xtoUXhZvDrQimwrjxIg&s";
+          imageAlt = "Melon plant with purple spots due to Cercospora";
+          causeText = "Penyebab: Jamur Cercospora spp.";
+          solutionText = "Solusi: Gunakan fungisida dan hindari kelembaban berlebih.";
+        } else if (symptom.includes("bercak abu-abu")) {
+          resultText = "Penyakit yang mungkin: Botrytis.";
+          imageUrl = "https://ephytia.inra.fr/en/I/28627/Botrytis7";
+          imageAlt = "Melon plant with gray spots due to Botrytis";
+          causeText = "Penyebab: Jamur Botrytis cinerea.";
+          solutionText = "Solusi: Gunakan fungisida dan pastikan sirkulasi udara yang baik.";
+        } else if (symptom.includes("bercak hijau")) {
+          resultText = "Penyakit yang mungkin: Virus Mosaik Hijau.";
+          imageUrl = "https://www.shutterstock.com/shutterstock/photos/1630449166/display_1500/stock-photo-cucumber-mosaic-virus-cmv-is-an-important-virus-because-of-its-agricultural-impact-in-the-1630449166.jpg";
+          imageAlt = "Melon plant with green spots due to Green Mosaic Virus";
+          causeText = "Penyebab: Virus Mosaik Hijau.";
+          solutionText = "Solusi: Gunakan varietas tahan virus dan kendalikan vektor.";
+        } else if (symptom.includes("bercak oranye")) {
+          resultText = "Penyakit yang mungkin: Virus Mosaik Oranye.";
+          imageUrl = "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTyuLJ-6gjyEnGfcW0eOCHZ8a_TlKTY42pOuA&s";
+          imageAlt = "Melon plant with orange spots due to Orange Mosaic Virus";
+          causeText = "Penyebab: Virus Mosaik Oranye.";
+          solutionText = "Solusi: Gunakan varietas tahan virus dan kendalikan vektor.";
+        } else if (symptom.includes("bercak biru")) {
+          resultText = "Penyakit yang mungkin: Virus Mosaik Biru.";
+          imageUrl = "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRG0AqbI0bQGEU-RrQwcFJdMRNPnZ_TvbGxhA&s";
+          imageAlt = "Melon plant with blue spots due to Blue Mosaic Virus";
+          causeText = "Penyebab: Virus Mosaik Biru.";
+          solutionText = "Solusi: Gunakan varietas tahan virus dan kendalikan vektor.";
+        } else if (symptom.includes("bercak coklat tua")) {
+          resultText = "Penyakit yang mungkin: Virus Mosaik Coklat.";
+          imageUrl = "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcT2YW4JCt4SG8LmltqkWrfz99fHjXbBn8s5Vg&s";
+          imageAlt = "Melon plant with dark brown spots due to Brown Mosaic Virus";
+          causeText = "Penyebab: Virus Mosaik Coklat.";
+          solutionText = "Solusi: Gunakan varietas tahan virus dan kendalikan vektor.";
+        } else if (symptom.includes("bercak putih besar")) {
+          resultText = "Penyakit yang mungkin: Virus Mosaik Putih.";
+          imageUrl = "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTE1wu3v1o8_yzxMGM5QpQ6CwwKUVYisGO66g&s";
+          imageAlt = "Melon plant with large white spots due to White Mosaic Virus";
+          causeText = "Penyebab: Virus Mosaik Putih.";
+          solutionText = "Solusi: Gunakan varietas tahan virus dan kendalikan vektor.";
+        } else if (symptom.includes("bercak kuning besar")) {
+          resultText = "Penyakit yang mungkin: Virus Mosaik Kuning.";
+          imageUrl = "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQfGhyyCQiu59uYaYUJiF8UhiFUdw-46jjh_A&s";
+          imageAlt = "Melon plant with large yellow spots due to Yellow Mosaic Virus";
+          causeText = "Penyebab: Virus Mosaik Kuning.";
+          solutionText = "Solusi: Gunakan varietas tahan virus dan kendalikan vektor.";
+        } else if (symptom.includes("bercak hitam besar")) {
+          resultText = "Penyakit yang mungkin: Virus Mosaik Hitam.";
+          imageUrl = "https://bugwoodcloud.org/images/1536x1024/1576455.jpg";
+          imageAlt = "Melon plant with large black spots due to Black Mosaic Virus";
+          causeText = "Penyebab: Virus Mosaik Hitam.";
+          solutionText = "Solusi: Gunakan varietas tahan virus dan kendalikan vektor.";
+        } else if (symptom.includes("bercak merah besar")) {
+          resultText = "Penyakit yang mungkin: Virus Mosaik Merah.";
+          imageUrl = "https://placehold.co/600x400?text=Melon+with+Red+Mosaic+Virus";
+          imageAlt = "Melon plant with large red spots due to Red Mosaic Virus";
+          causeText = "Penyebab: Virus Mosaik Merah.";
+          solutionText = "Solusi: Gunakan varietas tahan virus dan kendalikan vektor.";
+        } else if (symptom.includes("bercak ungu besar")) {
+          resultText = "Penyakit yang mungkin: Virus Mosaik Ungu.";
+          imageUrl = "https://placehold.co/600x400?text=Melon+with+Purple+Mosaic+Virus";
+          imageAlt = "Melon plant with large purple spots due to Purple Mosaic Virus";
+          causeText = "Penyebab: Virus Mosaik Ungu.";
+          solutionText = "Solusi: Gunakan varietas tahan virus dan kendalikan vektor.";
+        } else if (symptom.includes("bercak abu-abu besar")) {
+          resultText = "Penyakit yang mungkin: Virus Mosaik Abu-abu.";
+          imageUrl = "https://placehold.co/600x400?text=Melon+with+Gray+Mosaic+Virus";
+          imageAlt = "Melon plant with large gray spots due to Gray Mosaic Virus";
+          causeText = "Penyebab: Virus Mosaik Abu-abu.";
+          solutionText = "Solusi: Gunakan varietas tahan virus dan kendalikan vektor.";
+        } else {
+          resultText = "Tidak dapat mengidentifikasi penyakit berdasarkan gejala yang diberikan.";
+          imageUrl = "https://placehold.co/600x400?text=No+Image+Available";
+          imageAlt = "No image available";
+          causeText = "Penyebab tidak diketahui.";
+          solutionText = "Solusi tidak tersedia.";
+        }
+      } else {
+        resultText = "Pilih tanaman dan gejala untuk melanjutkan.";
+        imageUrl = "https://placehold.co/600x400?text=No+Image+Available";
+        imageAlt = "No image available";
+        causeText = "Penyebab tidak diketahui.";
+        solutionText = "Solusi tidak tersedia.";
+      }
+
+      document.getElementById("disease-result").innerText = resultText;
+      document.getElementById("disease-image").src = imageUrl;
+      document.getElementById("disease-image").alt = imageAlt;
+      document.getElementById("disease-cause").innerText = causeText;
+      document.getElementById("disease-solution").innerText = solutionText;
+      document.getElementById("result").classList.remove("hidden");
+    }
+  </script>
+</body>
+</html>
